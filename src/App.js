@@ -5,6 +5,7 @@ import Toggler from "./components/Toggler/Toggler"
 import rawData from "./data.json"
 import ProgrammerList from "./components/ProgrammerList/ProgrammerList"
 import ProgForm from "./components/ProgForm/ProgForm"
+import WorkForm from "./components/WorkForm/WorkForm"
 
 function App() {
   const [listOfProgrammers, setListOfProgrammers] = useState(
@@ -12,6 +13,7 @@ function App() {
   )
 
   const [valid, setValid] = useState(false)
+  const [activeTab, setActiveTab] = useState(1)
 
   const [newProgrammer, setNewProgrammer] = useState({
     id:
@@ -69,20 +71,47 @@ function App() {
     setListOfProgrammers(temp)
   }
 
+  const handleChoose = (name) => {
+    switch (name) {
+      case "list-of-progs": {
+        setActiveTab(1)
+        break
+      }
+      case "Tasks": {
+        setActiveTab(2)
+        break
+      }
+      default:
+        break
+    }
+  }
+
   return (
     <PageContainer>
       <h1>Your app for handling projects</h1>
       <br></br>
       <h2>Toggle view</h2>
-      <Toggler />
-      <h2>Your team</h2>
-      <ProgrammerList data={listOfProgrammers} onDelete={handleDelete} />
-      <ProgForm
-        valid={valid}
-        onChange={handleChange}
-        onAdd={handleAdd}
-        data={newProgrammer}
-      />
+      <Toggler onChoose={handleChoose} active={activeTab} />
+      {activeTab === 1 && (
+        <>
+          <h2>Your team</h2>
+          <ProgrammerList data={listOfProgrammers} onDelete={handleDelete} />
+          <ProgForm
+            valid={valid}
+            onChange={handleChange}
+            onAdd={handleAdd}
+            data={newProgrammer}
+          />
+        </>
+      )}
+
+      {activeTab === 2 && (
+        <>
+          <h2>Your Task</h2>
+
+          <WorkForm programmers={listOfProgrammers}></WorkForm>
+        </>
+      )}
     </PageContainer>
   )
 }

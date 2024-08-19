@@ -9,7 +9,7 @@ function Toggler({ onChoose, active }) {
     <div className="page-toggler">
       <button
         className={`toggler-btn ${active === 1 ? "active" : ""}`}
-        name="list-of-dogs"
+        name="list-of-progs"
         onClick={handleClick}
       >
         List of Programmers
@@ -17,7 +17,7 @@ function Toggler({ onChoose, active }) {
 
       <button
         className={`toggler-btn ${active === 2 ? "active" : ""}`}
-        name="shelter-storage"
+        name="Tasks"
         onClick={handleClick}
       >
         Form for planning tasks
