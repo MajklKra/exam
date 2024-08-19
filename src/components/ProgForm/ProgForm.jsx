@@ -31,7 +31,7 @@ function ProgForm({ data, valid, onChange, onAdd }) {
         checked={data.position === "Senior"}
       />
 
-      <button disabled={valid} onClick={onAdd}>
+      <button disabled={!valid} onClick={onAdd}>
         Přidat
       </button>
     </div>

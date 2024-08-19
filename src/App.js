@@ -40,6 +40,7 @@ function App() {
         break
     }
     setNewProgrammer(updatedProgrammer)
+    validateData(updatedProgrammer)
   }
 
   const validateData = (prog) => {
@@ -74,6 +75,7 @@ function App() {
       <br></br>
       <h2>Toggle view</h2>
       <Toggler />
+      <h2>Your team</h2>
       <ProgrammerList data={listOfProgrammers} onDelete={handleDelete} />
       <ProgForm
         valid={valid}
