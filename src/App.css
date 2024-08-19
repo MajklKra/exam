@@ -1,0 +1,29 @@
+h1,
+h2,
+h3 {
+  color: blue;
+  font-weight: bolder;
+}
+
+#h1 {
+  margin-top: 100px;
+}
+
+#d1 {
+  margin: 20px;
+  padding: 50px;
+  border: 2px solid #808080;
+  border-radius: 15px;
+  background-color: #f8f8f8;
+}
+
+#d2 {
+  margin: 20px;
+  padding: 50px;
+  border: 2px solid #808080;
+  border-radius: 15px;
+}
+
+#h2 {
+  color: gray;
+}

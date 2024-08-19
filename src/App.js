@@ -88,30 +88,33 @@ function App() {
 
   return (
     <PageContainer>
-      <h1>Your app for handling projects</h1>
+      <h1 id="h1">Your app for handling projects</h1>
       <br></br>
       <h2>Toggle view</h2>
-      <Toggler onChoose={handleChoose} active={activeTab} />
-      {activeTab === 1 && (
-        <>
-          <h2>Your team</h2>
-          <ProgrammerList data={listOfProgrammers} onDelete={handleDelete} />
-          <ProgForm
-            valid={valid}
-            onChange={handleChange}
-            onAdd={handleAdd}
-            data={newProgrammer}
-          />
-        </>
-      )}
 
-      {activeTab === 2 && (
-        <>
-          <h2>Your Task</h2>
+        <Toggler onChoose={handleChoose} active={activeTab} />
+          
+        {activeTab === 1 && (
+          <div id="d1">
+            <h2 id="h2"> Your team</h2>
+            <ProgrammerList data={listOfProgrammers} onDelete={handleDelete} />
+            <ProgForm
+              valid={valid}
+              onChange={handleChange}
+              onAdd={handleAdd}
+              data={newProgrammer}
+            />
+          </div>
+        )}
 
-          <WorkForm programmers={listOfProgrammers}></WorkForm>
-        </>
-      )}
+        {activeTab === 2 && (
+          <div id="d2">
+            <h2 id="h2">Your Task</h2>
+
+            <WorkForm programmers={listOfProgrammers}></WorkForm>
+          </div>
+        )}
+
     </PageContainer>
   )
 }

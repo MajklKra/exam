@@ -10,10 +10,17 @@
   padding: 0 15px;
   align-items: center;
   justify-content: space-between;
-  background-color: #f4f2f3;
+  color:gray;
+  /* background-color: #f4f2f3; */
 
   &:nth-child(even) {
-    background-color: #c0a9bd;
+    /* background-color: #ffffff; */
+    border-bottom: 1px solid black;
+  }
+
+  &:nth-child(odd) {
+    /* background-color: #dcdcdc; */
+    border-bottom: 1px solid black;
   }
 }
 

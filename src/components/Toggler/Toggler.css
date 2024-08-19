@@ -15,8 +15,10 @@
   color: black;
   font-size: 20px;
   cursor: pointer;
+  background-color: #dcdcdc;
+  opacity: 0.5;
 }
 
 .active {
-  background-color: rgba(44, 185, 19, 0.6);
+  background-color: gray;
 }

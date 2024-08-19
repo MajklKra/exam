@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback } from "react"
 import "./WorkForm.css"
 
-function WorkForm({ onAdd, programmers }) {
-  const [tempStorage, setTempStorage] = useState({
+function WorkForm({ programmers }) {
+  const [tempInput, setTempInput] = useState({
     code: "",
     time: "",
   })
@@ -10,7 +10,6 @@ function WorkForm({ onAdd, programmers }) {
   const [disable, setDisable] = useState(true)
   const [buttonColor, setButtonColor] = useState("red")
 
-  // Počítá počet juniorů a seniorů v seznamu programátorů
   const countProgrammers = useCallback(() => {
     let juniorCount = 0
     let seniorCount = 0
@@ -21,27 +20,26 @@ function WorkForm({ onAdd, programmers }) {
     return { juniorCount, seniorCount }
   }, [programmers])
 
-  const handleStorage = (e) => {
+  const handleInput = (e) => {
     const source = e.target.name
-    setTempStorage({ ...tempStorage, [source]: e.target.value })
+    setTempInput({ ...tempInput, [source]: e.target.value })
   }
 
   useEffect(() => {
     const { juniorCount, seniorCount } = countProgrammers()
     const totalLinesPerDay = juniorCount * 100 + seniorCount * 200
-    const totalLinesNeeded = parseInt(tempStorage.code) || 0
-    const totalDaysNeeded = parseInt(tempStorage.time) || 0
+    const totalLinesNeeded = parseInt(tempInput.code) || 0
+    const totalDaysNeeded = parseInt(tempInput.time) || 0
 
     const canCompleteTask =
       totalLinesPerDay * totalDaysNeeded >= totalLinesNeeded
 
-    setDisable(!(tempStorage.code && tempStorage.time && canCompleteTask))
+    setDisable(!(tempInput.code && tempInput.time && canCompleteTask))
     setButtonColor(canCompleteTask ? "green" : "red")
-  }, [tempStorage, countProgrammers]) // Přidáme countProgrammers jako závislost
+  }, [tempInput, countProgrammers])
 
   const handleClick = () => {
-    // Resetuje hodnoty formuláře
-    setTempStorage({
+    setTempInput({
       code: "",
       time: "",
     })
@@ -54,16 +52,16 @@ function WorkForm({ onAdd, programmers }) {
         type="number"
         name="code"
         min={0}
-        value={tempStorage.code}
-        onChange={handleStorage}
+        value={tempInput.code}
+        onChange={handleInput}
       />
       <label htmlFor="time">Time limit [days]</label>
       <input
         type="number"
         name="time"
         min={0}
-        value={tempStorage.time}
-        onChange={handleStorage}
+        value={tempInput.time}
+        onChange={handleInput}
       />
       <button
         style={{ backgroundColor: buttonColor }}
